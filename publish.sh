@@ -8,10 +8,10 @@ rm --recursive --force openfisca.org/doc
 mv doc openfisca.org/doc
 cd openfisca.org
 git fetch  # Make sure we are up to date with git remote branches
-git add .
+git add --all
 git config --global user.name "OpenFisca-Bot"
 git config --global user.email "bot@openfisca.org"
-git commit --message="Push from openfisca doc"
+git diff-index --quiet HEAD || git commit --message="Push from openfisca doc"
 git push https://github.com/openfisca/openfisca.org.git gh-pages
 if git status --untracked-files=no ; then
 	echo "There was an issue pushing to openfisca.org"
